@@ -17,3 +17,44 @@ PDF Evaluation on Android (Android 平台上的 PDF 测评)
 测评设备: Redmi note 5 / Android 9
 
 测评方式: 以 master 分支上的分支为纯净分支，产生的空 apk 的大小为 2,706,998  字节(约2.7MB assets 包含 test.pdf) ，此后每测评一种新的支持 PDF 的能力都拉出一个新分支做代码接入以及计算包增量
+
+
+
+## 方式1:外部浏览器打开
+
+分支: browser 
+
+apk 增量无
+
+成本低
+
+加载风险无 (每个手机都至少存在默认浏览器)
+
+加载过程：
+
+1、从当前 app 跳转浏览器应用
+
+2、浏览器解析地址弹出选项是下载还是打开
+
+3、浏览器
+
+<img src="./images/browser_open.jpg" alt="browser_open" style="zoom:50%;" />
+
+缺点: 打开之后需要回退栈几次才能回到原应用
+
+
+
+```java
+    public static void openPDFInBrowser(Context context, String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.putExtra(Browser.EXTRA_APPLICATION_ID, context.getPackageName());
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Log.w("error", "Activity was not found for intent, " + intent.toString());
+        }
+    }
+
+```
+
