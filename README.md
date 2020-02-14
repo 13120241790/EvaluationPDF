@@ -58,3 +58,20 @@ apk 增量无
 
 ```
 
+
+
+
+
+淘汰方案:
+
+1 github 开源库 
+
+https://github.com/barteksc/AndroidPdfViewer 
+
+淘汰原因，对 apk 增量过大，暂未实际测评网上查询资料是 15MB 
+
+
+
+2 连接Google服务器解析
+
+淘汰原因: 国内网络环境访问 Google 需要翻墙
