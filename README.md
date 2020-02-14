@@ -38,7 +38,7 @@ apk 增量无
 
 3、浏览器
 
-<img src="./images/browser_open.jpg" alt="browser_open" style="zoom:50%;" />
+<img src="images/browser_open.jpg" alt="browser_open" style="zoom:50%;" />
 
 缺点: 打开之后需要回退栈几次才能回到原应用
 
