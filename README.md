@@ -63,6 +63,8 @@ apk 增量无
 
 实现方式基于webview 内嵌 pdf.js 
 
+分支: pdf_js_local
+
 apk 增量 约 4.9 MB 
 
 成本低
