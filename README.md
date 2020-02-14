@@ -75,3 +75,21 @@ https://github.com/barteksc/AndroidPdfViewer
 2 连接Google服务器解析
 
 淘汰原因: 国内网络环境访问 Google 需要翻墙
+
+
+
+3 PdfRenderer / PdfDocument
+
+```java
+android.graphics.pdf
+```
+
+Android 原生的 PDF 支持类库
+
+淘汰原因: 
+
+Android API > 21 才可用
+
+编码成本不低
+
+不支持在线 http 预览需要下载文件到本地
