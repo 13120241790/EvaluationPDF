@@ -9,6 +9,7 @@ PDF Evaluation on Android (Android 平台上的 PDF 测评)
 - 加载能力(远端、本地)
 - 加载速度
 - 易用性
+- 是否支持 pdf 缩放
 
 
 
@@ -58,7 +59,56 @@ apk 增量无
 
 ```
 
-## 方式2
+## 方式2 PDF.js Local 
+
+实现方式基于webview 内嵌 pdf.js 
+
+apk 增量 约 4.9 MB 
+
+成本低
+
+加载无风险(加载本地 pdf ，远端 pdf 得先下载到本地再保存)
+
+
+
+```java
+
+    public static final String LOCAL_FILE = "file:///android_asset/test.pdf";
+
+    WebView mWebView;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+
+        mWebView.loadUrl("file:///android_asset/index.html?" + LOCAL_FILE);
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initView() {
+        mWebView = findViewById(R.id.webView);
+
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
+    }
+```
+
+
+
+
+
+优点: 应用内加载，加载速度较快
+
+缺点: 
+
+apk 增量不小，但比 AndroidPdfViewer 这点要强很多
+
+目前调研不支持缩放: 已经设置 webview 相关 setSupportZoom 接口
 
 
 
