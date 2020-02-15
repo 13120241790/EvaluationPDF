@@ -39,6 +39,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
     }
 }
