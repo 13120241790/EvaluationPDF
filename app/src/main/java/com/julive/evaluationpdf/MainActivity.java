@@ -2,6 +2,7 @@ package com.julive.evaluationpdf;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -22,8 +23,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        DownloadUtil.download(PDF_URL, getCacheDir() + "/temp.pdf", new DownloadUtil.OnDownloadListener() {
+            @Override
+            public void onDownloadSuccess(final String path) {
+                Log.d("MainActivity", "onDownloadSuccess: " + path);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mWebView.loadUrl("file:///android_asset/index.html?file:///" + path);
+                    }
+                });
+            }
 
-        mWebView.loadUrl("file:///android_asset/index.html?" + LOCAL_FILE);
+            @Override
+            public void onDownloading(int progress) {
+                Log.d("MainActivity", "onDownloading: " + progress);
+            }
+
+            @Override
+            public void onDownloadFailed(String msg) {
+                Log.d("MainActivity", "onDownloadFailed: " + msg);
+            }
+        });
+//        mWebView.loadUrl("file:///android_asset/index.html?" + LOCAL_FILE);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
